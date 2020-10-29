@@ -1,4 +1,5 @@
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+$progressPreference = "silentlyContinue"
 function DotEnvConfigure($debug,$path) {
 #    $path = $PSScriptRoot 
    $loop = $true
