@@ -1,0 +1,3 @@
+
+node ./uninstall.js
+pause
