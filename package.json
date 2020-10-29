@@ -1,7 +1,7 @@
 {
-  "name": "address-book-batch-jobs",
+  "name": "365adm-room-manager",
   "version": "1.0.0",
-  "description": "WOODY - Address book maintainance",
+  "description": "Room Manager is a companion service to https://www.jumpto365.com/product/room-manager",
   "main": "index.js",
   "dependencies": {
    "dotenv":"^8.2.0",
@@ -18,9 +18,8 @@
   },
   "scripts": {
     "yarn":"yarn",
-    "batch-all":"./.env.cmd",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "batch-all":"./.env.cmd"
   },
-  "author": "",
-  "license": "ISC"
+  "author": " Niels Johansen,jumpto365, Inc (niels@jumpto365.com)",
+  "license": "None"
 }
