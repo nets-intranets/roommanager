@@ -32,5 +32,5 @@ foreach ($room in $ExchangeCurrentRooms.Values) {
 }
 
 Write-Progress -Completed  -Activity ""
-Write-Host "Done importing"
+Write-Output "Done importing"
 

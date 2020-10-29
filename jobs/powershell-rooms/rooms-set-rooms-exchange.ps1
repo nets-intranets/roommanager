@@ -3,7 +3,7 @@
 $context = (Init $MyInvocation.MyCommand.Name $true)
     
 $title = "Updating existing Rooms from Masterdata list"
-write-host $title
+write-output $title
 
 $rooms = Get-Content "$($context.datapath)\rooms-masterdata.json" | Out-String | ConvertFrom-Json
 
@@ -37,6 +37,6 @@ foreach ($room in $rooms) {
 Write-Progress -Completed  -Activity "done"
 
 
-write-host "Done $title"
+write-output "Done $title"
 Done $context
 

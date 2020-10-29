@@ -5,7 +5,7 @@ $context = (Init $MyInvocation  $false)
 $SharePointRooms = @{}    
 $title = "Loading existing Room Lists from SharePoint"
 
-write-host $title
+write-output $title
 
 $rooms = (SharePointRead  $context '/Lists/Rooms/items?$expand=fields&$top=5000')
 $counter = 0
@@ -62,6 +62,6 @@ foreach ($roomItem in $rooms) {
 Write-Progress -Completed  -Activity "done"
 
 ConvertTo-Json -InputObject $SharePointRooms -Depth 10 | Out-File "$($context.datapath)\rooms-sharepoint.json" 
-write-host "Done $title"
+write-output "Done $title"
 Done $context
 

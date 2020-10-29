@@ -5,11 +5,11 @@
 
 #>
 
-Write-Host "Removing all rooms and distribution room lists"
+write-output "Removing all rooms and distribution room lists"
 
 $dev = $env:ROOMMGRAPPDEBUG
 
-Write-host "Connecting to Exchange Online"
+write-output "Connecting to Exchange Online"
 $code = $env:AADPASSWORD
 $username = $env:AADUSER 
 $domain = $env:AADDOMAIN
@@ -33,7 +33,7 @@ foreach ($mbx in $mbxs) {
 }
 
 if (!$dev -and $Session) {
-    write-host "Closing session"cls
+    write-output "Closing session"
     Remove-PSSession $Session
     $Session = $null
   

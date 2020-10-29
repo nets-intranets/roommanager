@@ -6,7 +6,7 @@ $ExchangeCurrentRoomGroups = @{}
     
 $title = "Loading existing Room Lists from Exchange"
 
-write-host $title
+write-output $title
 
 $dls = get-distributiongroup -RecipientTypeDetails RoomList 
 $counter = 0
@@ -28,6 +28,6 @@ Write-Progress -Completed  -Activity "done"
 
 
 ConvertTo-Json -InputObject $ExchangeCurrentRoomGroups -Depth 10 | Out-File "$($context.datapath)\room-lists-exchange.json"
-write-host "Done $title"
+write-output "Done $title"
 Done $context
 

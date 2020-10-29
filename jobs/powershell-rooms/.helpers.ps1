@@ -6,11 +6,11 @@ function DotEnvConfigure($debug,$path) {
     do {
         $filename = "$path\.env"
         if ($debug) {
-            write-host "Checking " $filename
+            write-output "Checking  $filename"
         }
         if (Test-Path $filename) {
             if ($debug) {
-                write-host "Using " $filename
+                write-output "Using $filename" 
             }
             $lines = Get-Content $filename
              
@@ -19,7 +19,7 @@ function DotEnvConfigure($debug,$path) {
                 $nameValuePair = $line.split("=")
                 if ($nameValuePair[0] -ne "") {
                     if ($debug) {
-                        write-host "Setting >$($nameValuePair[0])<"
+                        write-output "Setting >$($nameValuePair[0])<"
                     }
     
                     [System.Environment]::SetEnvironmentVariable($nameValuePair[0], $nameValuePair[1])
@@ -33,7 +33,7 @@ function DotEnvConfigure($debug,$path) {
             if ($lastBackslash -lt 4) {
                 $loop = $false
                 if ($debug) {
-                    write-host "Didn't find any .env file  "
+                    write-output "Didn't find any .env file  "
                 }
             }
             else {
@@ -56,7 +56,7 @@ function GetAccessToken($client_id, $client_secret, $client_domain) {
     
 }
 function ConnectExchange($username, $secret) {
-    Write-host "Connecting to Exchange Online"
+    write-output "Connecting to Exchange Online"
     $code = ConvertTo-SecureString $secret -AsPlainText -Force
     $psCred = New-Object System.Management.Automation.PSCredential -ArgumentList ($username, $code)
     
@@ -128,7 +128,7 @@ function LogToSharePoint($token, $site , $title, $status, $system, $subSystem, $
         `n    }
         `n}"
 
-    # write-host $body 
+    # write-output $body 
     #    Out-File -FilePath "$PSScriptRoot\error.json" -InputObject $body
     $url = ($site + '/Lists/Log/items/')
   
@@ -201,7 +201,7 @@ function SharePointRead($context, $path) {
     $headers.Add("Authorization", "Bearer $($context.token)" )
     $url = $context.site + $path
     if ($context.verbose) {
-        Write-Host "SharePointRead $url"
+        write-output "SharePointRead $url"
     }
     $result = Invoke-RestMethod ($url) -Method 'GET' -Headers $headers 
     return $result.value
@@ -215,7 +215,7 @@ function SharePointLookup($context, $path) {
     $headers.Add("Authorization", "Bearer $($context.token)" )
     $url = $context.site + $path
     if ($context.verbose) {
-        Write-Host "SharePointLookup $url"
+        write-output "SharePointLookup $url"
     }
     $result = Invoke-RestMethod ($url) -Method 'GET' -Headers $headers 
     return $result
@@ -302,7 +302,7 @@ function Done($context) {
 
     
     if (!$context.IsDev) {
-        write-host "Closing sessions"
+        write-output "Closing sessions"
         get-pssession | Remove-PSSession
     }
 

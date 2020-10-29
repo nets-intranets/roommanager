@@ -5,7 +5,7 @@ $context = (Init $MyInvocation $true)
 $ExchangeCurrentRooms = @{}
     
 $title = "Loading existing Rooms from Exchange"
-write-host $title
+write-output $title
 $mbxs = get-mailbox -RecipientTypeDetails:RoomMailbox
 $counter = 0
 foreach ($mailbox in $mbxs) {
@@ -29,6 +29,6 @@ Write-Progress -Completed  -Activity "done"
 
 
 ConvertTo-Json -InputObject $ExchangeCurrentRooms -Depth 10 | Out-File "$($context.datapath)\rooms-exchange.json"
-write-host "Done $title"
+write-output "Done $title"
 Done $context
 
